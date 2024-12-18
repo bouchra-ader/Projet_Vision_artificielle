@@ -1,4 +1,4 @@
-torch
-torchvision
-numpy
-matplotlib
+Flask
+tensorflow  # Use this if you're using TensorFlow
+gunicorn    # For running the Flask app in production
+Pillow      # For handling image files
