@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from src.predict import Predictor
 
+# Initialize the Flask app
 app = Flask(__name__)
 
 # Initialize the model for predictions
