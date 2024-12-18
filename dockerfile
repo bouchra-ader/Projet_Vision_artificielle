@@ -1,17 +1,20 @@
-# Utiliser une image de base avec Python 3.9
+# Use a Python 3.9 base image
 FROM python:3.9-slim
 
-# Définir le répertoire de travail
+# Set the working directory in the container
 WORKDIR /app
 
-# Copier le fichier requirements.txt dans le conteneur
+# Copy the requirements.txt into the container
 COPY requirements.txt .
 
-# Installer les dépendances à partir de requirements.txt
+# Install dependencies from the requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copier le reste du code du projet dans le conteneur
+# Copy the rest of the application code into the container
 COPY . .
 
-# Exécuter le script principal
-CMD ["python", "main.py"]
+# Expose the port on which the app will run (Flask default is 5000)
+EXPOSE 5000
+
+# Run the Flask application with gunicorn
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
